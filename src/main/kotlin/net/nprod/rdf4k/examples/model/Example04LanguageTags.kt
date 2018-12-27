@@ -38,9 +38,9 @@ object Example04LanguageTags {
         }.build()
 
         // To see what's in our model, let's just print it to the screen
-        for (st in model) {
+        model.map { statement ->
             // we want to see the object values of each statement
-            val value = st.o
+            val value = statement.o
             if (value is Literal) {
                 println("language: " + value.language.orElse("unknown"))
                 println(" title: " + value.label)

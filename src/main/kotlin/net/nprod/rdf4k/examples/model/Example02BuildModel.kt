@@ -33,9 +33,10 @@ object Example02BuildModel {
                 }
             }
         }.build()
+
         // To see what's in our model, let's just print it to the screen
-        for (st in model) {
-            println(st)
+        model.map { statement ->
+            println(statement)
         }
     }
 }

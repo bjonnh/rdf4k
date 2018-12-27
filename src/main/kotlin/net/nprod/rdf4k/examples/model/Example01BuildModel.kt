@@ -45,8 +45,8 @@ object Example01BuildModel {
         model.add(picasso, FOAF.FIRST_NAME, vf.createLiteral("Pablo"))
 
         // to see what's in our model, let's just print it to the screen
-        for (st in model) {
-            println(st)
+        model.map { statement ->
+            println(statement)
         }
     }
 }
