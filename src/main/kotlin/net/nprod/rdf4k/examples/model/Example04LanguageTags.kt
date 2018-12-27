@@ -25,7 +25,7 @@ object Example04LanguageTags {
 
         val vf = SimpleValueFactory.getInstance()
 
-        // Create a new RDF examples.model containing some information about the painting "The Potato Eaters"
+        // Create a new RDF model containing some information about the painting "The Potato Eaters"
         val model = modelBuilder {
             namespace("ex", "http://example.org/") {
                 subject("ex:PotatoEaters") {
@@ -37,7 +37,7 @@ object Example04LanguageTags {
             }
         }.build()
 
-        // To see what's in our examples.model, let's just print it to the screen
+        // To see what's in our model, let's just print it to the screen
         for (st in model) {
             // we want to see the object values of each statement
             val value = st.o

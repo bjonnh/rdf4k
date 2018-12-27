@@ -31,7 +31,7 @@ object Example03LiteralDatatypes {
 
         val vf = SimpleValueFactory.getInstance()
 
-        // Create a new RDF examples.model containing information about the painting "The Potato Eaters"
+        // Create a new RDF model containing information about the painting "The Potato Eaters"
 
         val model = modelBuilder {
             namespace("ex", "http://example.org/") {
@@ -47,7 +47,7 @@ object Example03LiteralDatatypes {
             }
         }.build()
 
-        // To see what's in our examples.model, let's just print stuff to the screen
+        // To see what's in our model, let's just print stuff to the screen
         model.map { st ->
             // we want to see the object values of each property
             val property = st.p
