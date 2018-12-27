@@ -6,10 +6,12 @@
  * http://www.eclipse.org/org/documents/edl-v10.php.
  *******************************************************************************/
 
-package net.bjonnh.rdf4k.examples
+package net.nprod.rdf4k.examples
 
-import net.nprod.rdf4k.Statement.*
-import net.nprod.rdf4k.Model.*
+import net.nprod.rdf4k.*
+import net.nprod.rdf4k.modelBuilder
+import net.nprod.rdf4k.namespace
+import net.nprod.rdf4k.subject
 
 import org.eclipse.rdf4j.model.Literal
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory

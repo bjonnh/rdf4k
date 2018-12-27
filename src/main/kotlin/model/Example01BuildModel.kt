@@ -6,7 +6,7 @@
  * http://www.eclipse.org/org/documents/edl-v10.php.
  *******************************************************************************/
 
-package net.bjonnh.rdf4k.examples
+package net.nprod.rdf4k.examples
 
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory
 import org.eclipse.rdf4j.model.impl.TreeModel

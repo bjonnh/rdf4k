@@ -5,11 +5,11 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package net.bjonnh.rdf4k.examples
+package net.nprod.rdf4k.examples
 
-import net.nprod.rdf4k.Model.modelBuilder
-import net.nprod.rdf4k.Model.namespace
-import net.nprod.rdf4k.Model.subject
+import net.nprod.rdf4k.modelBuilder
+import net.nprod.rdf4k.namespace
+import net.nprod.rdf4k.subject
 import net.nprod.rdf4k.Statement.o
 import org.eclipse.rdf4j.model.Literal
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory
