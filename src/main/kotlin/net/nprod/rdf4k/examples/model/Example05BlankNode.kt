@@ -42,14 +42,14 @@ object Example05BlankNode {
                     // to picasso via the `ex:homeAddress` property, and then adding facts _about_ the address
                     add("ex:homeAddress", address)
                 }// link the blank node
-                    subject(address) {
-                        // switch the subject
-                        add("ex:street", "31 Art Gallery")
-                        add("ex:city", "Madrid")
-                        add("ex:country", "Spain")
-                    }
+                subject(address) {
+                    // switch the subject
+                    add("ex:street", "31 Art Gallery")
+                    add("ex:city", "Madrid")
+                    add("ex:country", "Spain")
                 }
-            }.build()
+            }
+        }.build()
 
         // To see what's in our model, let's just print it to the screen
         model.map { statement ->
