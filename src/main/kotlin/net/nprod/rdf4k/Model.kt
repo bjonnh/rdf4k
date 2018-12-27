@@ -16,6 +16,7 @@
 
 package net.nprod.rdf4k
 
+import org.eclipse.rdf4j.model.BNode
 import org.eclipse.rdf4j.model.util.ModelBuilder
 
 fun modelBuilder(block: ModelBuilder.() -> Unit): ModelBuilder = ModelBuilder().apply(block)
@@ -26,4 +27,8 @@ fun ModelBuilder.namespace(prefix: String, namespace: String, block: ModelBuilde
 
 fun ModelBuilder.subject(prefixedNameOriri: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
     return this.subject(prefixedNameOriri).block()
+}
+
+fun ModelBuilder.subject(node: BNode, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
+    return this.subject(node).block()
 }
