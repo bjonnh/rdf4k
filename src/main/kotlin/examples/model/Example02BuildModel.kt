@@ -6,7 +6,7 @@
  * http://www.eclipse.org/org/documents/edl-v10.php.
  *******************************************************************************/
 
-package net.nprod.rdf4k.examples
+package net.nprod.rdf4k.examples.model
 
 import net.nprod.rdf4k.modelBuilder
 import net.nprod.rdf4k.namespace
@@ -33,7 +33,7 @@ object Example02BuildModel {
                 }
             }
         }.build()
-        // To see what's in our model, let's just print it to the screen
+        // To see what's in our examples.model, let's just print it to the screen
         for (st in model) {
             println(st)
         }

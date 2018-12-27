@@ -6,7 +6,7 @@
  * http://www.eclipse.org/org/documents/edl-v10.php.
  *******************************************************************************/
 
-package net.nprod.rdf4k.examples
+package net.nprod.rdf4k.examples.model
 
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory
 import org.eclipse.rdf4j.model.impl.TreeModel
@@ -44,7 +44,7 @@ object Example01BuildModel {
         // second statement: Picasso's first name is "Pablo".
         model.add(picasso, FOAF.FIRST_NAME, vf.createLiteral("Pablo"))
 
-        // to see what's in our model, let's just print it to the screen
+        // to see what's in our examples.model, let's just print it to the screen
         for (st in model) {
             println(st)
         }
