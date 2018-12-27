@@ -29,6 +29,11 @@ fun ModelBuilder.subject(prefixedNameOriri: String, block: ModelBuilder.() -> Mo
     return this.subject(prefixedNameOriri).block()
 }
 
+fun ModelBuilder.namedGraph(graphName: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
+    return this.namedGraph(graphName).block()
+}
+
+
 fun ModelBuilder.subject(node: BNode, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
     return this.subject(node).block()
 }

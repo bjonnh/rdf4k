@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Eclipse RDF4J contributors.
+ * Copyright (c) 2016-2018 Eclipse RDF4J contributors.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Distribution License v1.0
  * which accompanies this distribution, and is available at
@@ -31,7 +31,7 @@ object Example08ReadTurtle {
         val filename = "example-data-artists.ttl"
 
         // read the file 'example-data-artists.ttl' as an InputStream.
-        val input = javaClass.getResource("/$filename").openStream()
+        val input = javaClass.getResourceAsStream("/$filename")
 
         // Rio also accepts a java.io.Reader as input for the parser.
         val model = Rio.parse(input, "", RDFFormat.TURTLE)
