@@ -7,10 +7,7 @@
  */
 package net.nprod.rdf4k.examples
 
-import net.nprod.rdf4k.modelBuilder
-import net.nprod.rdf4k.namespace
-import net.nprod.rdf4k.subject
-import net.nprod.rdf4k.Statement.o
+import net.nprod.rdf4k.*
 import org.eclipse.rdf4j.model.Literal
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory
 import org.eclipse.rdf4j.model.vocabulary.DC
