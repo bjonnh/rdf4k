@@ -63,7 +63,7 @@ object Example12BuildModelWithNamedGraphs {
         model.contexts().map { context ->
             println("Named graph $context contains: ")
 
-            // write _only_ the statemements in the current named graph to the console, in N-Triples format
+            // write _only_ the statements in the current named graph to the console, in N-Triples format
             Rio.write(model.filter(null, null, null, context), System.out, RDFFormat.NTRIPLES)
             println()
         }
