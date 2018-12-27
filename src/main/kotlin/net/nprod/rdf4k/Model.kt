@@ -21,8 +21,8 @@ import org.eclipse.rdf4j.model.util.ModelBuilder
 
 fun modelBuilder(block: ModelBuilder.() -> Unit): ModelBuilder = ModelBuilder().apply(block)
 
-fun ModelBuilder.namespace(prefix: String, namespace: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
-    return this.setNamespace(prefix, namespace).block()
+fun ModelBuilder.namespace(prefix: String, namespace: String): ModelBuilder {
+    return this.setNamespace(prefix, namespace)
 }
 
 fun ModelBuilder.subject(prefixedNameOriri: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {

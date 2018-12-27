@@ -34,16 +34,15 @@ object Example03LiteralDatatypes {
         // Create a new RDF model containing information about the painting "The Potato Eaters"
 
         val model = modelBuilder {
-            namespace("ex", "http://example.org/") {
-                subject("ex:PotatoEaters") {
-                    // this painting was created on April 1, 1885
-                    add("ex:creationDate", vf.createLiteral("1885-04-01T00:00:00Z", XMLSchema.DATETIME))
-                    // You can also pass in a Java Date object directly:
-                    //.add("ex:creationDate", new GregorianCalendar(1885, Calendar.APRIL, 1).getTime())
+            namespace("ex", "http://example.org/")
+            subject("ex:PotatoEaters") {
+                // this painting was created on April 1, 1885
+                add("ex:creationDate", vf.createLiteral("1885-04-01T00:00:00Z", XMLSchema.DATETIME))
+                // You can also pass in a Java Date object directly:
+                //.add("ex:creationDate", new GregorianCalendar(1885, Calendar.APRIL, 1).getTime())
 
-                    // the painting shows 5 people
-                    add("ex:peopleDepicted", 5)
-                }
+                // the painting shows 5 people
+                add("ex:peopleDepicted", 5)
             }
         }.build()
 

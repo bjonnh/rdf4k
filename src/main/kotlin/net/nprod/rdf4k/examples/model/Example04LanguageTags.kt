@@ -27,13 +27,12 @@ object Example04LanguageTags {
 
         // Create a new RDF model containing some information about the painting "The Potato Eaters"
         val model = modelBuilder {
-            namespace("ex", "http://example.org/") {
-                subject("ex:PotatoEaters") {
-                    // In English, this painting is called "The Potato Eaters"
-                    add(DC.TITLE, vf.createLiteral("The Potato Eaters", "en"))
-                    // In Dutch, it's called "De Aardappeleters"
-                    add(DC.TITLE, vf.createLiteral("De Aardappeleters", "nl"))
-                }
+            namespace("ex", "http://example.org/")
+            subject("ex:PotatoEaters") {
+                // In English, this painting is called "The Potato Eaters"
+                add(DC.TITLE, vf.createLiteral("The Potato Eaters", "en"))
+                // In Dutch, it's called "De Aardappeleters"
+                add(DC.TITLE, vf.createLiteral("De Aardappeleters", "nl"))
             }
         }.build()
 

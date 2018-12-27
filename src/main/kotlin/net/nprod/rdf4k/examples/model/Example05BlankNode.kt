@@ -34,20 +34,19 @@ object Example05BlankNode {
         // First we do the same thing we did in example 02: create a new ModelBuilder, and add
         // two statements about Picasso.
         val model = modelBuilder {
-            namespace("ex", "http://example.org/") {
-                subject("ex:Picasso") {
-                    add(RDF.TYPE, "ex:Artist")
-                    add(FOAF.FIRST_NAME, "Pablo")
-                    // this is where it becomes new: we add the address by linking the blank node
-                    // to picasso via the `ex:homeAddress` property, and then adding facts _about_ the address
-                    add("ex:homeAddress", address)
-                }// link the blank node
-                subject(address) {
-                    // switch the subject
-                    add("ex:street", "31 Art Gallery")
-                    add("ex:city", "Madrid")
-                    add("ex:country", "Spain")
-                }
+            namespace("ex", "http://example.org/")
+            subject("ex:Picasso") {
+                add(RDF.TYPE, "ex:Artist")
+                add(FOAF.FIRST_NAME, "Pablo")
+                // this is where it becomes new: we add the address by linking the blank node
+                // to picasso via the `ex:homeAddress` property, and then adding facts _about_ the address
+                add("ex:homeAddress", address)
+            }// link the blank node
+            subject(address) {
+                // switch the subject
+                add("ex:street", "31 Art Gallery")
+                add("ex:city", "Madrid")
+                add("ex:country", "Spain")
             }
         }.build()
 

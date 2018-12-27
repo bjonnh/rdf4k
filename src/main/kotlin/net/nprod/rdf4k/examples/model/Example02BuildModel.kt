@@ -26,11 +26,10 @@ object Example02BuildModel {
     fun main(args: Array<String>) {
         // We are using the adapted Kotlin DSL here
         val model = modelBuilder {
-            namespace("ex", "http://example.org/") {
-                subject("ex:Picasso") {
-                    add(RDF.TYPE, "ex:Artist")
-                    add(FOAF.FIRST_NAME, "Pablo")
-                }
+            namespace("ex", "http://example.org/")
+            subject("ex:Picasso") {
+                add(RDF.TYPE, "ex:Artist")
+                add(FOAF.FIRST_NAME, "Pablo")
             }
         }.build()
 
