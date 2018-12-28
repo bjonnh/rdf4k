@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>get - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">net.nprod.rdf4k</a>&nbsp;/&nbsp;<a href="index.html">org.eclipse.rdf4j.query.BindingSet</a>&nbsp;/&nbsp;<a href="./get.html">get</a><br/>
+<br/>
+<h1>get</h1>
+<a name="net.nprod.rdf4k$get(org.eclipse.rdf4j.query.BindingSet, kotlin.String)"></a>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">BindingSet</span><span class="symbol">.</span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$get(org.eclipse.rdf4j.query.BindingSet, kotlin.String)/itemName">itemName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Value</span></code>
+<p>Gets a named binding from the BindingSet.</p>
+<pre><code class="lang-kotlin">/**
+ * RDF Tutorial example 15: executing a simple SPARQL query on the database
+ *
+ * @author Jeen Broekstra
+ * @author Jonathan Bisson
+ */
+object Example15SimpleSPARQLQuery {
+
+    @Throws(IOException::class)
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+        // Create a new Repository.
+        val db = SailRepository(MemoryStore())
+        db.initialize()
+
+        // Open a connection to the database
+        try {
+            db.connection.use { conn -&gt;
+                val filename = "example-data-artists.ttl"
+                javaClass.getResourceAsStream("/$filename").apply {
+                    // add the RDF data from the inputstream directly to our database
+                    conn.add(this, "", RDFFormat.TURTLE)
+                }
+
+                // We do a simple SPARQL SELECT-query that retrieves all resources of type `ex:Artist`,
+                // and their first names.
+                val queryString = """
+                    |PREFIX ex: &lt;http://example.org/&gt;
+                    |PREFIX foaf: &lt;${FOAF.NAMESPACE}&gt;
+                    |SELECT ?s ?n
+                    |WHERE {
+                    |    ?s a ex:Artist;
+                    |       foaf:firstName ?n .
+                    |}""".trimMargin()
+
+                val query = conn.prepareTupleQuery(queryString)
+
+                // A QueryResult is also an AutoCloseable resource, so make sure it gets closed when done.
+                // we just iterate over all solutions in the result...
+                query.evaluate().map {
+                    // ... and print out the value of the variable binding for ?s and ?n
+                    println("?s = " + it["s"])
+                    println("?n = " + it["n"])
+                }
+            }
+        } finally {
+            // Before our program exits, make sure the database is properly shut down.
+            db.shutDown()
+        }
+    }
+}</code></pre>
+<h3>Parameters</h3>
+<p><a name="itemName"></a>
+<code>itemName</code> - is the name of the binding</p>
+<p><strong>Author</strong><br/>
+Jonathan Bisson</p>
+</BODY>
+</HTML>

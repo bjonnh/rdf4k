@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>o - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">net.nprod.rdf4k</a>&nbsp;/&nbsp;<a href="index.html">org.eclipse.rdf4j.model.Statement</a>&nbsp;/&nbsp;<a href="./o.html">o</a><br/>
+<br/>
+<h1>o</h1>
+<a name="net.nprod.rdf4k$o#org.eclipse.rdf4j.model.Statement"></a>
+<code><span class="keyword">val </span><span class="identifier">Statement</span><span class="symbol">.</span><span class="identifier">o</span><span class="symbol">: </span><span class="identifier">Value</span></code>
+<p>Gather the <em>object</em> of the statement</p>
+<pre><code class="lang-kotlin">/**
+ * RDF Tutorial example 03: Datatyped literals
+ *
+ * @author Jeen Broekstra
+ * @author Jonathan Bisson
+ */
+object Example03LiteralDatatypes {
+
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+
+        val vf = SimpleValueFactory.getInstance()
+
+        // Create a new RDF model containing information about the painting "The Potato Eaters"
+
+        val model = modelBuilder {
+            namespace("ex", "http://example.org/")
+            subject("ex:PotatoEaters") {
+                // this painting was created on April 1, 1885
+                add("ex:creationDate", vf.createLiteral("1885-04-01T00:00:00Z", XMLSchema.DATETIME))
+                // You can also pass in a Java Date object directly:
+                //.add("ex:creationDate", new GregorianCalendar(1885, Calendar.APRIL, 1).getTime())
+
+                // the painting shows 5 people
+                add("ex:peopleDepicted", 5)
+            }
+        }.build()
+
+        // To see what's in our model, let's just print stuff to the screen
+        model.map { st -&gt;
+            // we want to see the object values of each property
+            val property = st.p
+            val value = st.o
+
+            if (value is Literal) {
+                println("datatype: " + value.datatype)
+
+                // get the value of the literal directly as a Java primitive.
+                when (property.localName) {
+                    "peopleDepicted" -&gt; {
+                        val peopleDepicted = value.intValue()
+                        println(peopleDepicted.toString() + " people are depicted in this painting")
+                    }
+                    "creationDate" -&gt; {
+                        val calendar = value.calendarValue()
+                        val date = calendar.toGregorianCalendar().time
+                        println("The painting was created on $date")
+                    }
+                }
+
+                // you can also just get the lexical value (a string) without worrying about the datatype
+                println("Lexical value: '" + value.label + "'")
+            }
+        }
+    }
+}</code></pre>
+<p><strong>Author</strong><br/>
+Jonathan Bisson</p>
+</BODY>
+</HTML>

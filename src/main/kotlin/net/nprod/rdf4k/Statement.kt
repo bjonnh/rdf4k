@@ -18,6 +18,25 @@ package net.nprod.rdf4k
 
 import org.eclipse.rdf4j.model.Statement
 
+/**
+ * Gather the *subject* of the statement
+ *
+ * @author Jonathan Bisson
+ */
 val Statement.s get() = this.subject
+
+/**
+ * Gather the *property* of the statement
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example03LiteralDatatypes
+ */
 val Statement.p get() = this.predicate
+
+/**
+ * Gather the *object* of the statement
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example03LiteralDatatypes
+ */
 val Statement.o get() = this.getObject()

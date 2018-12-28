@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>modelBuilder - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="index.html">net.nprod.rdf4k</a>&nbsp;/&nbsp;<a href="./model-builder.html">modelBuilder</a><br/>
+<br/>
+<h1>modelBuilder</h1>
+<a name="net.nprod.rdf4k$modelBuilder(kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">modelBuilder</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$modelBuilder(kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">ModelBuilder</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ModelBuilder</span></code>
+<p>Allows to construct a ModelBuilder using Kotlin's DSL</p>
+<pre><code class="lang-kotlin">/**
+ * RDF Tutorial example 02: Building a simple RDF Model using the RDF4J ModelBuilder
+ *
+ * @author Jeen Broekstra
+ * @author Jonathan Bisson
+ */
+object Example02BuildModel {
+
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+        // We are using the adapted Kotlin DSL here
+        val model = modelBuilder {
+            namespace("ex", "http://example.org/")
+            subject("ex:Picasso") {
+                add(RDF.TYPE, "ex:Artist")
+                add(FOAF.FIRST_NAME, "Pablo")
+            }
+        }.build()
+
+        // To see what's in our model, let's just print it to the screen
+        model.map { statement -&gt;
+            println(statement)
+        }
+    }
+}</code></pre>
+<p><strong>Author</strong><br/>
+Jonathan Bisson</p>
+</BODY>
+</HTML>

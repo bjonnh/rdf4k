@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>namedGraph - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">net.nprod.rdf4k</a>&nbsp;/&nbsp;<a href="index.html">org.eclipse.rdf4j.model.util.ModelBuilder</a>&nbsp;/&nbsp;<a href="./named-graph.html">namedGraph</a><br/>
+<br/>
+<h1>namedGraph</h1>
+<a name="net.nprod.rdf4k$namedGraph(org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.String, kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, )))"></a>
+<code><span class="keyword">fun </span><span class="identifier">ModelBuilder</span><span class="symbol">.</span><span class="identifier">namedGraph</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$namedGraph(org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.String, kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, )))/graphName">graphName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="net.nprod.rdf4k$namedGraph(org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.String, kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, )))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">ModelBuilder</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">ModelBuilder</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ModelBuilder</span></code>
+<p>Adds a named graph to a given ModelBuilder</p>
+<pre><code class="lang-kotlin">/**
+ * RDF Tutorial example 12: Building a Model with named graphs
+ *
+ * In this example, we show how you can use the context mechanism to add statements separate named
+ * graphs within the same Model.
+ *
+ * @author Jeen Broekstra
+ * @author Jonathan Bisson
+ */
+object Example12BuildModelWithNamedGraphs {
+
+    @Throws(IOException::class)
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+        // We'll use a ModelBuilder to create two named graphs, one containing data about
+        // picasso, the other about Van Gogh.
+        val builder = modelBuilder {
+            namespace("ex", "http://example.org/")
+
+            // in named graph 1, we add info about Picasso
+            namedGraph("ex:namedGraph1") {
+                subject("ex:Picasso") {
+                    add(RDF.TYPE, EX.ARTIST)
+                    add(FOAF.FIRST_NAME, "Pablo")
+                }
+            }
+
+            // in named graph2, we add info about Van Gogh.
+            namedGraph("ex:namedGraph2") {
+                subject("ex:VanGogh") {
+                    add(RDF.TYPE, EX.ARTIST)
+                    add(FOAF.FIRST_NAME, "Vincent")
+                }
+            }
+        }
+
+        // We're done building, create our Model
+        val model = builder.build()
+
+        // each named graph is stored as a separate context in our Model
+        model.contexts().map { context -&gt;
+            println("Named graph $context contains: ")
+
+            // write _only_ the statements in the current named graph to the console, in N-Triples format
+            Rio.write(model.filter(null, null, null, context), System.out, RDFFormat.NTRIPLES)
+            println()
+        }
+    }
+}</code></pre>
+<p><strong>Author</strong><br/>
+Jonathan Bisson</p>
+</BODY>
+</HTML>

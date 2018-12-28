@@ -19,21 +19,51 @@ package net.nprod.rdf4k
 import org.eclipse.rdf4j.model.BNode
 import org.eclipse.rdf4j.model.util.ModelBuilder
 
+/**
+ * Allows to construct a ModelBuilder using Kotlin's DSL
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example02BuildModel
+ */
 fun modelBuilder(block: ModelBuilder.() -> Unit): ModelBuilder = ModelBuilder().apply(block)
 
+/**
+ * Adds a namespace to a given ModelBuilder
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example02BuildModel
+ */
 fun ModelBuilder.namespace(prefix: String, namespace: String): ModelBuilder {
     return this.setNamespace(prefix, namespace)
 }
 
-fun ModelBuilder.subject(prefixedNameOriri: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
-    return this.subject(prefixedNameOriri).block()
+/**
+ * Adds a subject to a given ModelBuilder
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example02BuildModel
+ */
+fun ModelBuilder.subject(prefixedNameOrIRI: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
+    return this.subject(prefixedNameOrIRI).block()
 }
 
+/**
+ * Adds a subject from a node to a given ModelBuilder
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example02BuildModel
+ */
+fun ModelBuilder.subject(node: BNode, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
+    return this.subject(node).block()
+}
+
+/**
+ * Adds a named graph to a given ModelBuilder
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example12BuildModelWithNamedGraphs
+ */
 fun ModelBuilder.namedGraph(graphName: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
     return this.namedGraph(graphName).block()
 }
 
-
-fun ModelBuilder.subject(node: BNode, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
-    return this.subject(node).block()
-}
