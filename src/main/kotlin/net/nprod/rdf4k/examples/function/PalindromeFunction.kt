@@ -20,7 +20,7 @@ import org.eclipse.rdf4j.query.algebra.evaluation.function.Function
  *
  * @author Jeen Broekstra
  * @author Jonathan Bisson
- * @sample net.nprod.rdf4k.examples.function.ExampleK01FunctionInSQL
+ * @sample net.nprod.rdf4k.examples.function.ExampleK01FunctionInSPARQL
  */
 class PalindromeFunction : Function {
 

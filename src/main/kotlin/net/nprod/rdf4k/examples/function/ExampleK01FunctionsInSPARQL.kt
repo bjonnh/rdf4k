@@ -28,7 +28,7 @@ import org.eclipse.rdf4j.sail.memory.MemoryStore
  *
  * @author Jonathan Bisson
  */
-object ExampleK01FunctionInSQL {
+object ExampleK01FunctionInSPARQL {
 
     @JvmStatic
     fun main(args: Array<String>) {
