@@ -20,6 +20,7 @@ import org.eclipse.rdf4j.query.algebra.evaluation.function.Function
  *
  * @author Jeen Broekstra
  * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.function.ExampleK01FunctionInSQL
  */
 class PalindromeFunction : Function {
 
@@ -61,10 +62,10 @@ class PalindromeFunction : Function {
         // get the actual string value that we want to check for palindrome-ness.
         val label = arg.label
         // we invert our string
-        var inverted = ""
-        for (i in label.length - 1 downTo 0) {
-            inverted += label[i]
-        }
+
+
+        val inverted = label.reversed()
+
         // a string is a palindrome if it is equal to its own inverse
         val palindrome = inverted.equals(label, ignoreCase = true)
 
