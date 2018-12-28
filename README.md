@@ -1,6 +1,6 @@
 # Package net.nprod.rdf4k 
 A wrapper around [RDF4J](https://www.rdf4j.org) for [Kotlin](https://www.kotlinlang.org). It allows writing
-code using Kotlin's DSL. Documentation can be found [here](https://bjonnh.github.io/rdf4k/).
+code using Kotlin's DSL. Documentation can be found [here](https://bjonnh.github.io/rdf4k/). Code can be found [here](https://github.com/bjonnh/rdf4k).
 
 You can now write things such as 
 
