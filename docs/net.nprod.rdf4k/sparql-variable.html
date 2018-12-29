@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>sparqlVariable - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="index.html">net.nprod.rdf4k</a>&nbsp;/&nbsp;<a href="./sparql-variable.html">sparqlVariable</a><br/>
+<br/>
+<h1>sparqlVariable</h1>
+<a name="net.nprod.rdf4k$sparqlVariable(kotlin.String)"></a>
+<code><span class="keyword">fun </span><span class="identifier">sparqlVariable</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$sparqlVariable(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Variable</span></code>
+<p>A helper function to help write SPARQL variables in the DSL</p>
+<pre><code class="lang-kotlin">/**
+ * RDF Tutorial example K02: Using the Query Builder as a DSL
+ *
+ * Refer to that documentation: [http://docs.rdf4j.org/sparqlbuilder/]
+ *
+ *
+ * @author Jonathan Bisson
+ */
+object ExampleK02QueryBuilder {
+
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+
+
+        // We are using the adapted Kotlin DSL here
+        val model = modelBuilder {
+            namespace("ex", "http://example.org/")
+            subject("ex:a") {
+                add(FOAF.NAME, "Katherine Johnson")
+                add(RDF.TYPE, FOAF.PERSON)
+            }
+            subject("ex:b") {
+                add(FOAF.NAME, "Grace Hopper")
+                add(RDF.TYPE, FOAF.PERSON)
+            }
+        }.build()
+
+        val foafPrefix = sparqlPrefix("foaf", iri(FOAF.NAMESPACE))
+
+        val name = sparqlVariable("name")
+        val x = sparqlVariable("x")
+        val selectQuery = selectQuery {
+            prefix(foafPrefix)
+            // Could also have used directly
+            // prefix("foaf", iri("http://xmlns.com/foaf/0.1/"))
+            select(name) {
+                where(
+                        x.has(foafPrefix.iri("name"), name),
+                        x.isA(foafPrefix.iri("Person"))
+                )
+            }
+        }.orderBy(name).limit(5).offset(0).queryString
+        println(selectQuery)
+        val db = SailRepository(MemoryStore())
+        db.initialize()
+        // Open a connection to the database
+        try {
+            db.connection.apply {
+                // add the model
+                add(model)
+                val query = prepareTupleQuery(selectQuery)
+                query.evaluate().map {
+                    // ... and print out the value of the variable binding for ?s and ?n
+                    println("name = ${it["name"]}")
+                }
+            }
+        } finally {
+            // before our program exits, make sure the database is properly shut down.
+            db.shutDown()
+        }
+    }
+}</code></pre>
+<p><strong>Author</strong><br/>
+Jonathan Bisson</p>
+</BODY>
+</HTML>

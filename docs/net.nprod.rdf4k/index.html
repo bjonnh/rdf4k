@@ -69,6 +69,13 @@ model.map { statement -&gt;
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<p><a href="org.eclipse.rdf4j.sparqlbuilder.core.query.-select-query/index.html">org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery</a></p>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3>Functions</h3>
@@ -81,6 +88,33 @@ model.map { statement -&gt;
 <td>
 <code><span class="keyword">fun </span><span class="identifier">modelBuilder</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$modelBuilder(kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">ModelBuilder</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ModelBuilder</span></code>
 <p>Allows to construct a ModelBuilder using Kotlin's DSL</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="select-query.html">selectQuery</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">selectQuery</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$selectQuery(kotlin.Function1((org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SelectQuery</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">SelectQuery</span></code>
+<p>Allows to construct a SPARQL Query using Kotlin's DSL</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sparql-prefix.html">sparqlPrefix</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sparqlPrefix</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$sparqlPrefix(kotlin.String, org.eclipse.rdf4j.sparqlbuilder.rdf.Iri)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="net.nprod.rdf4k$sparqlPrefix(kotlin.String, org.eclipse.rdf4j.sparqlbuilder.rdf.Iri)/iri">iri</span><span class="symbol">:</span>&nbsp;<span class="identifier">Iri</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Prefix</span></code>
+<p>A helper function to help write SPARQL prefix in the DSL</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sparql-variable.html">sparqlVariable</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sparqlVariable</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$sparqlVariable(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Variable</span></code>
+<p>A helper function to help write SPARQL variables in the DSL</p>
 </td>
 </tr>
 </tbody>

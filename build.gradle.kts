@@ -20,6 +20,7 @@ dependencies {
     compile("org.eclipse.rdf4j:rdf4j-bom:2.4.2")
     compile("org.eclipse.rdf4j:rdf4j-runtime:2.4.2")
     compile("org.eclipse.rdf4j:rdf4j-queryresultio-text:2.4.2")
+    compile("org.eclipse.rdf4j:rdf4j-sparqlbuilder:2.4.2")
     compile("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")
 }
 
