@@ -46,7 +46,7 @@ object Example10PropertyValues {
         paintings.map { painting ->
             if (painting is Resource) {
                 // our value is either an IRI or a blank node. Retrieve its properties and print.
-                val paintingProperties = model.filter(painting as Resource, null, null)
+                val paintingProperties = model.filter(painting, null, null)
 
                 // write the info about this painting to the console in Turtle format
                 println("--- information about painting: $painting")
