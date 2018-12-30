@@ -18,3 +18,8 @@ model.map { statement ->
     println(statement)
 }
 ```
+
+
+# Help received
+
+Thanks to *Campbell Jones* for the Gradle/Bintray help.
