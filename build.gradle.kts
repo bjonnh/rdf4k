@@ -16,8 +16,8 @@ plugins {
     id("com.github.johnrengelman.shadow") version "4.0.3"
 }
 
-group = "net.bjonnh"
-version = "0.0.1"
+group = "net.nprod"
+version = "0.0.3"
 val artifactID = "rdf4k"
 
 repositories {
@@ -32,7 +32,7 @@ dependencies {
     compile("org.eclipse.rdf4j", "rdf4j-runtime", rdf4j_version)
     compile("org.eclipse.rdf4j", "rdf4j-queryresultio-text", rdf4j_version)
     compile("org.eclipse.rdf4j", "rdf4j-sparqlbuilder", rdf4j_version)
-    compile("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")
 }
 
 tasks.withType<KotlinCompile> {
@@ -41,7 +41,30 @@ tasks.withType<KotlinCompile> {
 
 val githubRepo = "https://github.com/bjonnh/rdf4k"
 
-tasks.withType<DokkaTask> {
+val dokkaJavadoc = task<DokkaTask>("dokkaJavadoc") {
+    val src = "src/main"
+    outputFormat = "javadoc"
+    outputDirectory = "$projectDir/javadoc"
+    skipEmptyPackages = true
+    jdkVersion = 8
+    /*val mapping = LinkMapping().apply {
+        dir = src
+        url = "${githubRepo}/blob/master/$src"
+        suffix = "#L"
+    }
+    linkMappings = arrayListOf(mapping)*/
+    sourceDirs = files(src)
+    moduleName = ""
+}
+
+val javadocJar by tasks.creating(Jar::class) {
+    dependsOn("dokkaJavadoc")
+    classifier = "javadoc"
+    from(tasks["dokkaJavadoc"])
+}
+
+
+val dokkaHtmldoc = task<DokkaTask>("dokkaHtmldoc") {
     val src = "src/main"
     val out = "$projectDir/docs"
 
@@ -83,6 +106,7 @@ tasks {
 
 }
 
+
 val sourcesJar by tasks.creating(Jar::class) {
     classifier = "sources"
     from(sourceSets["main"].allSource.sourceDirectories.files)
@@ -111,9 +135,10 @@ bintray {
 
 
 publishing.publications.create<MavenPublication>("BintrayRelease") {
-            from(components["java"])
-            artifact(sourcesJar)
-            groupId = project.group.toString()
-            artifactId = project.name
-            version = project.version.toString()
+    from(components["java"])
+    artifact(sourcesJar)
+    artifact(javadocJar)
+    groupId = project.group.toString()
+    artifactId = project.name
+    version = project.version.toString()
 }

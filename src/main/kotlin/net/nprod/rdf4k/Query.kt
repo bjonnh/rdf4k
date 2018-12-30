@@ -16,16 +16,12 @@
 
 package net.nprod.rdf4k
 
-import org.eclipse.rdf4j.model.IRI
 import org.eclipse.rdf4j.sparqlbuilder.core.Prefix
 import org.eclipse.rdf4j.sparqlbuilder.core.SparqlBuilder
 import org.eclipse.rdf4j.sparqlbuilder.core.Variable
 import org.eclipse.rdf4j.sparqlbuilder.core.query.Queries
 import org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery
-import org.eclipse.rdf4j.sparqlbuilder.graphpattern.GraphPattern
-import org.eclipse.rdf4j.sparqlbuilder.graphpattern.TriplePattern
 import org.eclipse.rdf4j.sparqlbuilder.rdf.Iri
-import org.eclipse.rdf4j.sparqlbuilder.rdf.RdfPredicate
 
 
 /**
