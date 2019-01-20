@@ -5,8 +5,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.api.publish.maven.MavenPom
 import org.jetbrains.dokka.gradle.*
 
-val kotlin_version = "1.3.11"
-val rdf4j_version = "2.4.2"
+val kotlinVersion = "1.3.11"
+val rdf4jVersion = "2.4.3"
 
 plugins {
     kotlin("jvm") version "1.3.11"
@@ -17,7 +17,7 @@ plugins {
 }
 
 group = "net.nprod"
-version = "0.0.3"
+version = "0.0.6"
 val artifactID = "rdf4k"
 
 repositories {
@@ -26,13 +26,13 @@ repositories {
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk8", kotlin_version))
-    compile(kotlin("reflect", kotlin_version))
-    compile("org.eclipse.rdf4j", "rdf4j-bom", rdf4j_version)
-    compile("org.eclipse.rdf4j", "rdf4j-runtime", rdf4j_version)
-    compile("org.eclipse.rdf4j", "rdf4j-queryresultio-text", rdf4j_version)
-    compile("org.eclipse.rdf4j", "rdf4j-sparqlbuilder", rdf4j_version)
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")
+    compile(kotlin("stdlib-jdk8", kotlinVersion))
+    compile(kotlin("reflect", kotlinVersion))
+    compile("org.eclipse.rdf4j", "rdf4j-bom", rdf4jVersion)
+    compile("org.eclipse.rdf4j", "rdf4j-runtime", rdf4jVersion)
+    compile("org.eclipse.rdf4j", "rdf4j-queryresultio-text", rdf4jVersion)
+    compile("org.eclipse.rdf4j", "rdf4j-sparqlbuilder", rdf4jVersion)
+    compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")
 }
 
 tasks.withType<KotlinCompile> {

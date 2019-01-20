@@ -36,10 +36,9 @@ object Example15SimpleSPARQLQuery {
         try {
             db.connection.use { conn ->
                 val filename = "example-data-artists.ttl"
-                javaClass.getResourceAsStream("/$filename").apply {
-                    // add the RDF data from the inputstream directly to our database
-                    conn.add(this, "", RDFFormat.TURTLE)
-                }
+
+                // add the RDF data from the inputstream directly to our database
+                conn.add(javaClass.getResourceAsStream("/$filename"), "", RDFFormat.TURTLE)
 
                 // We do a simple SPARQL SELECT-query that retrieves all resources of type `ex:Artist`,
                 // and their first names.

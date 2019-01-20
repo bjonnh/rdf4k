@@ -35,10 +35,8 @@ object Example14AddRDFToDatabase {
         try {
             db.connection.use { conn ->
                 val filename = "example-data-artists.ttl"
-                javaClass.getResourceAsStream("/$filename").apply {
-                    // add the RDF data from the inputstream directly to our database
-                    conn.add(this, "", RDFFormat.TURTLE)
-                }
+                // add the RDF data from the inputstream directly to our database
+                conn.add(javaClass.getResourceAsStream("/$filename"), "", RDFFormat.TURTLE)
 
                 // let's check that our data is actually in the database
                 conn.getStatements(null, null, null).map { st ->
