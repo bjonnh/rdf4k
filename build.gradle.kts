@@ -4,6 +4,7 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.api.publish.maven.MavenPom
 import org.jetbrains.dokka.gradle.*
+import java.util.Properties
 
 val kotlinVersion = "1.3.11"
 val rdf4jVersion = "2.4.3"
@@ -17,7 +18,7 @@ plugins {
 }
 
 group = "net.nprod"
-version = "0.0.6"
+version = "0.0.7"
 val artifactID = "rdf4k"
 
 repositories {
@@ -112,12 +113,16 @@ val sourcesJar by tasks.creating(Jar::class) {
     from(sourceSets["main"].allSource.sourceDirectories.files)
 }
 
-
 fun findProperty(s: String) = project.findProperty(s) as String?
 
 bintray {
-    user = findProperty("bintrayUser")
-    key = findProperty("bintrayApiKey")
+
+    val localProperties = Properties()
+    val file = project.rootProject.file("local.properties")
+    localProperties.load(file.inputStream())
+
+    user = localProperties.getProperty("bintrayUser")
+    key = localProperties.getProperty("bintrayApiKey")
     publish = true
     setPublications("BintrayRelease")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {

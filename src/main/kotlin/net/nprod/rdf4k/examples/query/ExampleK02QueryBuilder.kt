@@ -69,7 +69,7 @@ object ExampleK02QueryBuilder {
                 add(model)
                 val query = prepareTupleQuery(selectQuery)
                 query.evaluate().map {
-                    // ... and print out the value of the variable binding for ?s and ?n
+                    // ... and print out the value of the variable binding for ?name
                     println("name = ${it["name"]}")
                 }
             }
