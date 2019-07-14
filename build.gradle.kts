@@ -6,19 +6,19 @@ import org.gradle.api.publish.maven.MavenPom
 import org.jetbrains.dokka.gradle.*
 import java.util.Properties
 
-val kotlinVersion = "1.3.11"
-val rdf4jVersion = "2.4.3"
+val kotlinVersion = "1.3.41"
+val rdf4jVersion = "2.5.3"
 
 plugins {
-    kotlin("jvm") version "1.3.11"
-    id("org.jetbrains.dokka") version "0.9.17"
+    kotlin("jvm") version "1.3.41"
+    id("org.jetbrains.dokka") version "0.9.18"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.4"
     id("com.github.johnrengelman.shadow") version "4.0.3"
 }
 
 group = "net.nprod"
-version = "0.0.7"
+version = "0.0.8"
 val artifactID = "rdf4k"
 
 repositories {
@@ -121,8 +121,8 @@ bintray {
     val file = project.rootProject.file("local.properties")
     localProperties.load(file.inputStream())
 
-    user = localProperties.getProperty("bintrayUser")
-    key = localProperties.getProperty("bintrayApiKey")
+    user = localProperties.getProperty("bintray.user")
+    key = localProperties.getProperty("bintray.apikey")
     publish = true
     setPublications("BintrayRelease")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {

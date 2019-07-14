@@ -14,6 +14,8 @@ import org.eclipse.rdf4j.model.vocabulary.FOAF
 import org.eclipse.rdf4j.model.vocabulary.RDF
 import org.eclipse.rdf4j.repository.sail.SailRepository
 import org.eclipse.rdf4j.sail.memory.MemoryStore
+import org.eclipse.rdf4j.sparqlbuilder.core.Variable
+import org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery
 import org.eclipse.rdf4j.sparqlbuilder.rdf.Rdf.iri
 
 
@@ -48,7 +50,7 @@ object ExampleK02QueryBuilder {
 
         val name = sparqlVariable("name")
         val x = sparqlVariable("x")
-        val selectQuery = selectQuery {
+        val selectQuery = (selectQuery {
             prefix(foafPrefix)
             // Could also have used directly
             // prefix("foaf", iri("http://xmlns.com/foaf/0.1/"))
@@ -58,7 +60,7 @@ object ExampleK02QueryBuilder {
                         x.isA(foafPrefix.iri("Person"))
                 )
             }
-        }.orderBy(name).limit(5).offset(0).queryString
+        } orderBy name limit 5 offset 0 ).queryString
         println(selectQuery)
         val db = SailRepository(MemoryStore())
         db.initialize()
@@ -79,3 +81,7 @@ object ExampleK02QueryBuilder {
         }
     }
 }
+
+infix fun SelectQuery.orderBy(variable: Variable) = this.orderBy(variable)
+infix fun SelectQuery.limit(num: Int) = this.limit(num)
+infix fun SelectQuery.offset(num: Int) = this.offset(num)
