@@ -14,6 +14,8 @@ import org.eclipse.rdf4j.model.vocabulary.RDF
 import org.eclipse.rdf4j.model.vocabulary.RDFS
 import org.eclipse.rdf4j.repository.sail.SailRepository
 import org.eclipse.rdf4j.sail.memory.MemoryStore
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 /**
  * RDF Tutorial example K01: Implementing a function for SPARQL queries
@@ -28,10 +30,10 @@ import org.eclipse.rdf4j.sail.memory.MemoryStore
  *
  * @author Jonathan Bisson
  */
-object ExampleK01FunctionInSPARQL {
+class ExampleK01FunctionInSPARQL {
 
-    @JvmStatic
-    fun main(args: Array<String>) {
+    @Test
+    fun `functions in SPARQL`() {
 
 
         // We are using the adapted Kotlin DSL here
@@ -57,20 +59,23 @@ object ExampleK01FunctionInSPARQL {
         val db = SailRepository(MemoryStore())
         db.initialize()
         // Open a connection to the database
-        try {
-            db.connection.apply {
+        val output = try {
+            db.connection.run {
                 // add the model
                 add(model)
                 val query = prepareTupleQuery(queryString)
                 query.evaluate().map {
-                    // ... and print out the value of the variable binding for ?s and ?n
-                    println("x = ${it["x"]} label = \"${it["label"]}\"")
-                }
+                    it["x"].toString() to it["label"].toString()
+                }.toMap()
             }
         } finally {
             // before our program exits, make sure the database is properly shut down.
-            db.shutDown()
+            // However as we are just running tests and this step is taking a lot of time, we do not do it.
+            // in a real program, you really want to do that.
+            //db.shutDown()
         }
+
+        assertEquals(mapOf("http://example.org/a" to "\"step on no pets\""), output)
     }
 }
 

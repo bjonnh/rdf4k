@@ -1,9 +1,8 @@
 $dokka.format:html
 $dokka.linkExtension:html
 $dokka.location:net.nprod.rdf4k$get(org.eclipse.rdf4j.query.BindingSet, kotlin.String)net.nprod.rdf4k/org.eclipse.rdf4j.query.-binding-set/get.html
-$dokka.location:net.nprod.rdf4k$map(org.eclipse.rdf4j.query.GraphQueryResult, kotlin.Function1((org.eclipse.rdf4j.model.Statement, kotlin.Unit)))net.nprod.rdf4k/org.eclipse.rdf4j.query.-graph-query-result/map.html
-$dokka.location:net.nprod.rdf4k$map(org.eclipse.rdf4j.query.TupleQueryResult, kotlin.Function1((org.eclipse.rdf4j.query.BindingSet, kotlin.Unit)))net.nprod.rdf4k/org.eclipse.rdf4j.query.-tuple-query-result/map.html
-$dokka.location:net.nprod.rdf4k$map(org.eclipse.rdf4j.repository.RepositoryResult((org.eclipse.rdf4j.model.Statement)), kotlin.Function1((org.eclipse.rdf4j.model.Statement, kotlin.Unit)))net.nprod.rdf4k/org.eclipse.rdf4j.repository.-repository-result/map.html
+$dokka.location:net.nprod.rdf4k$map(org.eclipse.rdf4j.query.QueryResult((net.nprod.rdf4k.map.T)), kotlin.Function1((net.nprod.rdf4k.map.T, net.nprod.rdf4k.map.R)))net.nprod.rdf4k/org.eclipse.rdf4j.query.-query-result/map.html
+$dokka.location:net.nprod.rdf4k$map(org.eclipse.rdf4j.repository.RepositoryResult((net.nprod.rdf4k.map.T)), kotlin.Function1((net.nprod.rdf4k.map.T, net.nprod.rdf4k.map.R)))net.nprod.rdf4k/org.eclipse.rdf4j.repository.-repository-result/map.html
 $dokka.location:net.nprod.rdf4k$namedGraph(org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.String, kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, )))net.nprod.rdf4k/org.eclipse.rdf4j.model.util.-model-builder/named-graph.html
 $dokka.location:net.nprod.rdf4k$namespace(org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.String, kotlin.String)net.nprod.rdf4k/org.eclipse.rdf4j.model.util.-model-builder/namespace.html
 $dokka.location:net.nprod.rdf4k$o#org.eclipse.rdf4j.model.Statementnet.nprod.rdf4k/org.eclipse.rdf4j.model.-statement/o.html
@@ -13,6 +12,9 @@ $dokka.location:net.nprod.rdf4k$s#org.eclipse.rdf4j.model.Statementnet.nprod.rd
 $dokka.location:net.nprod.rdf4k$select(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, org.eclipse.rdf4j.sparqlbuilder.core.Variable, kotlin.Function1((org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, )))net.nprod.rdf4k/org.eclipse.rdf4j.sparqlbuilder.core.query.-select-query/select.html
 $dokka.location:net.nprod.rdf4k$subject(org.eclipse.rdf4j.model.util.ModelBuilder, kotlin.String, kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, )))net.nprod.rdf4k/org.eclipse.rdf4j.model.util.-model-builder/subject.html
 $dokka.location:net.nprod.rdf4k$subject(org.eclipse.rdf4j.model.util.ModelBuilder, org.eclipse.rdf4j.model.BNode, kotlin.Function1((org.eclipse.rdf4j.model.util.ModelBuilder, )))net.nprod.rdf4k/org.eclipse.rdf4j.model.util.-model-builder/subject.html
+$dokka.location:net.nprod.rdf4k.examples.query$limit(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, kotlin.Int)net.nprod.rdf4k.examples.query/org.eclipse.rdf4j.sparqlbuilder.core.query.-select-query/limit.html
+$dokka.location:net.nprod.rdf4k.examples.query$offset(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, kotlin.Int)net.nprod.rdf4k.examples.query/org.eclipse.rdf4j.sparqlbuilder.core.query.-select-query/offset.html
+$dokka.location:net.nprod.rdf4k.examples.query$orderBy(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, org.eclipse.rdf4j.sparqlbuilder.core.Variable)net.nprod.rdf4k.examples.query/org.eclipse.rdf4j.sparqlbuilder.core.query.-select-query/order-by.html
 net.nprod.rdf4k
 net.nprod.rdf4k.examples.function
 net.nprod.rdf4k.examples.model

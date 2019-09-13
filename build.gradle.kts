@@ -6,19 +6,19 @@ import org.gradle.api.publish.maven.MavenPom
 import org.jetbrains.dokka.gradle.*
 import java.util.Properties
 
-val kotlinVersion = "1.3.41"
-val rdf4jVersion = "2.5.3"
+val kotlinVersion = "1.3.50"
+val rdf4jVersion = "3.0.0"
 
 plugins {
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm") version "1.3.50"
     id("org.jetbrains.dokka") version "0.9.18"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.4"
-    id("com.github.johnrengelman.shadow") version "4.0.3"
+    id("com.github.johnrengelman.shadow") version "5.1.0"
 }
 
 group = "net.nprod"
-version = "0.0.8"
+version = "0.0.9"
 val artifactID = "rdf4k"
 
 repositories {
@@ -33,17 +33,22 @@ dependencies {
     compile("org.eclipse.rdf4j", "rdf4j-runtime", rdf4jVersion)
     compile("org.eclipse.rdf4j", "rdf4j-queryresultio-text", rdf4jVersion)
     compile("org.eclipse.rdf4j", "rdf4j-sparqlbuilder", rdf4jVersion)
-    compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")
+    compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:0.9.18")
+    testCompile("org.junit.jupiter", "junit-jupiter", "5.5.2")
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+val test by tasks.getting(Test::class) {
+    useJUnitPlatform {}
+}
+
 val githubRepo = "https://github.com/bjonnh/rdf4k"
 
 val dokkaJavadoc = task<DokkaTask>("dokkaJavadoc") {
-    val src = "src/main"
+    val src = "src/"
     outputFormat = "javadoc"
     outputDirectory = "$projectDir/javadoc"
     skipEmptyPackages = true
@@ -66,7 +71,7 @@ val javadocJar by tasks.creating(Jar::class) {
 
 
 val dokkaHtmldoc = task<DokkaTask>("dokkaHtmldoc") {
-    val src = "src/main"
+    val src = "src/"
     val out = "$projectDir/docs"
 
     doFirst {
@@ -116,7 +121,6 @@ val sourcesJar by tasks.creating(Jar::class) {
 fun findProperty(s: String) = project.findProperty(s) as String?
 
 bintray {
-
     val localProperties = Properties()
     val file = project.rootProject.file("local.properties")
     localProperties.load(file.inputStream())

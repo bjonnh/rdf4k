@@ -8,8 +8,8 @@
 <a href="../index.html">net.nprod.rdf4k</a>&nbsp;/&nbsp;<a href="index.html">org.eclipse.rdf4j.repository.RepositoryResult</a>&nbsp;/&nbsp;<a href="./map.html">map</a><br/>
 <br/>
 <h1>map</h1>
-<a name="net.nprod.rdf4k$map(org.eclipse.rdf4j.repository.RepositoryResult((org.eclipse.rdf4j.model.Statement)), kotlin.Function1((org.eclipse.rdf4j.model.Statement, kotlin.Unit)))"></a>
-<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="identifier">RepositoryResult</span><span class="symbol">&lt;</span><span class="identifier">Statement</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$map(org.eclipse.rdf4j.repository.RepositoryResult((org.eclipse.rdf4j.model.Statement)), kotlin.Function1((org.eclipse.rdf4j.model.Statement, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">Statement</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<a name="net.nprod.rdf4k$map(org.eclipse.rdf4j.repository.RepositoryResult((net.nprod.rdf4k.map.T)), kotlin.Function1((net.nprod.rdf4k.map.T, net.nprod.rdf4k.map.R)))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">RepositoryResult</span><span class="symbol">&lt;</span><a href="map.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$map(org.eclipse.rdf4j.repository.RepositoryResult((net.nprod.rdf4k.map.T)), kotlin.Function1((net.nprod.rdf4k.map.T, net.nprod.rdf4k.map.R)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="map.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">&gt;</span></code> <a href="https://github.com/bjonnh/rdf4k/blob/master/src/main/kotlin/net/nprod/rdf4k/Repository.kt#L19">(source)</a>
 <p>Iterates over the RepositoryResult elements using <em>block</em></p>
 <pre><code class="lang-kotlin">/**
  * RDF Tutorial example 13: Adding an RDF Model to a database
@@ -33,7 +33,7 @@ object Example13AddRDFToDatabase {
         // that simply stores everything in main memory. Obviously, for most real-life applications, you will
         // want a different database implementation, that can handle large amounts of data without running
         // out of memory and keeps data safely on disk.
-        // See http://docs.rdf4j.org/programming/#_the_repository_api for more extensive examples on
+        // See http://docs.rdf4j.org/programming/#_the_repository_api for more extensive net.nprod.rdf4k.examples.examples on
         // how to create and maintain different types of databases.
         val db = SailRepository(MemoryStore())
         db.initialize()

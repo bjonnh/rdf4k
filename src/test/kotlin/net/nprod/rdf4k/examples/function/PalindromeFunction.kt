@@ -77,6 +77,6 @@ class PalindromeFunction : Function {
     companion object {
 
         // define a constant for the namespace of our custom function
-        val NAMESPACE = "http://example.org/custom-function/"
+        const val NAMESPACE = "http://example.org/custom-function/"
     }
 }

@@ -8,7 +8,7 @@
 <a href="../index.html">net.nprod.rdf4k.examples.function</a>&nbsp;/&nbsp;<a href="./index.html">PalindromeFunction</a><br/>
 <br/>
 <h1>PalindromeFunction</h1>
-<code><span class="keyword">class </span><span class="identifier">PalindromeFunction</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Function</span></code>
+<code><span class="keyword">class </span><span class="identifier">PalindromeFunction</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Function</span></code> <a href="https://github.com/bjonnh/rdf4k/blob/master/src/test/kotlin/net/nprod/rdf4k/examples/function/PalindromeFunction.kt#L25">(source)</a>
 <p>An example custom SPARQL function that detects palindromes</p>
 <pre><code class="lang-kotlin">/**
  * RDF Tutorial example K01: Implementing a function for SPARQL queries
@@ -23,10 +23,10 @@
  *
  * @author Jonathan Bisson
  */
-object ExampleK01FunctionInSPARQL {
+class ExampleK01FunctionInSPARQL {
 
-    @JvmStatic
-    fun main(args: Array&lt;String&gt;) {
+    @Test
+    fun `functions in SPARQL`() {
 
 
         // We are using the adapted Kotlin DSL here
@@ -52,20 +52,23 @@ object ExampleK01FunctionInSPARQL {
         val db = SailRepository(MemoryStore())
         db.initialize()
         // Open a connection to the database
-        try {
-            db.connection.apply {
+        val output = try {
+            db.connection.run {
                 // add the model
                 add(model)
                 val query = prepareTupleQuery(queryString)
                 query.evaluate().map {
-                    // ... and print out the value of the variable binding for ?s and ?n
-                    println("x = ${it["x"]} label = \"${it["label"]}\"")
-                }
+                    it["x"].toString() to it["label"].toString()
+                }.toMap()
             }
         } finally {
             // before our program exits, make sure the database is properly shut down.
-            db.shutDown()
+            // However as we are just running tests and this step is taking a lot of time, we do not do it.
+            // in a real program, you really want to do that.
+            //db.shutDown()
         }
+
+        assertEquals(mapOf("http://example.org/a" to "\"step on no pets\""), output)
     }
 }</code></pre>
 <p><strong>Author</strong><br/>
@@ -118,7 +121,7 @@ String</p>
 <p><a href="-n-a-m-e-s-p-a-c-e.html">NAMESPACE</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">NAMESPACE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">NAMESPACE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 </tbody>
 </table>

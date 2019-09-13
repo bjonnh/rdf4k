@@ -9,7 +9,6 @@ package net.nprod.rdf4k.examples.model
 
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.Rio
-import java.io.File
 
 import java.io.IOException
 

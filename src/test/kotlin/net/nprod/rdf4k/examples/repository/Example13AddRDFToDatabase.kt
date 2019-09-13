@@ -38,7 +38,7 @@ object Example13AddRDFToDatabase {
         // that simply stores everything in main memory. Obviously, for most real-life applications, you will
         // want a different database implementation, that can handle large amounts of data without running
         // out of memory and keeps data safely on disk.
-        // See http://docs.rdf4j.org/programming/#_the_repository_api for more extensive examples on
+        // See http://docs.rdf4j.org/programming/#_the_repository_api for more extensive net.nprod.rdf4k.examples.examples on
         // how to create and maintain different types of databases.
         val db = SailRepository(MemoryStore())
         db.initialize()

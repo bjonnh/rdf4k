@@ -9,7 +9,7 @@
 <br/>
 <h1>select</h1>
 <a name="net.nprod.rdf4k$select(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, org.eclipse.rdf4j.sparqlbuilder.core.Variable, kotlin.Function1((org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, )))"></a>
-<code><span class="keyword">fun </span><span class="identifier">SelectQuery</span><span class="symbol">.</span><span class="identifier">select</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$select(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, org.eclipse.rdf4j.sparqlbuilder.core.Variable, kotlin.Function1((org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, )))/name">name</span><span class="symbol">:</span>&nbsp;<span class="identifier">Variable</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="net.nprod.rdf4k$select(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, org.eclipse.rdf4j.sparqlbuilder.core.Variable, kotlin.Function1((org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, )))/function">function</span><span class="symbol">:</span>&nbsp;<span class="identifier">SelectQuery</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">SelectQuery</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">SelectQuery</span></code>
+<code><span class="keyword">fun </span><span class="identifier">SelectQuery</span><span class="symbol">.</span><span class="identifier">select</span><span class="symbol">(</span><span class="identifier" id="net.nprod.rdf4k$select(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, org.eclipse.rdf4j.sparqlbuilder.core.Variable, kotlin.Function1((org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, )))/name">name</span><span class="symbol">:</span>&nbsp;<span class="identifier">Variable</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="net.nprod.rdf4k$select(org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, org.eclipse.rdf4j.sparqlbuilder.core.Variable, kotlin.Function1((org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery, )))/function">function</span><span class="symbol">:</span>&nbsp;<span class="identifier">SelectQuery</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">SelectQuery</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">SelectQuery</span></code> <a href="https://github.com/bjonnh/rdf4k/blob/master/src/main/kotlin/net/nprod/rdf4k/Query.kt#L42">(source)</a>
 <p>Allows to insert a select in a SPARQL Query using Kotlin's DSL</p>
 <pre><code class="lang-kotlin">/**
  * RDF Tutorial example K02: Using the Query Builder as a DSL
@@ -42,7 +42,7 @@ object ExampleK02QueryBuilder {
 
         val name = sparqlVariable("name")
         val x = sparqlVariable("x")
-        val selectQuery = selectQuery {
+        val selectQuery = (selectQuery {
             prefix(foafPrefix)
             // Could also have used directly
             // prefix("foaf", iri("http://xmlns.com/foaf/0.1/"))
@@ -52,7 +52,7 @@ object ExampleK02QueryBuilder {
                         x.isA(foafPrefix.iri("Person"))
                 )
             }
-        }.orderBy(name).limit(5).offset(0).queryString
+        } orderBy name limit 5 offset 0 ).queryString
         println(selectQuery)
         val db = SailRepository(MemoryStore())
         db.initialize()
@@ -63,7 +63,7 @@ object ExampleK02QueryBuilder {
                 add(model)
                 val query = prepareTupleQuery(selectQuery)
                 query.evaluate().map {
-                    // ... and print out the value of the variable binding for ?s and ?n
+                    // ... and print out the value of the variable binding for ?name
                     println("name = ${it["name"]}")
                 }
             }

@@ -130,3 +130,4 @@ reports/
 .DS_Store
 
 target/
+/.attach_pid*
