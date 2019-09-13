@@ -27,7 +27,7 @@ Here is a minimal build.gradle.kts
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.11"
+    kotlin("jvm") version "1.3.50"
 }
 
 group = "net.mygreatprogram"
@@ -40,13 +40,16 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
-    compile("net.nprod:rdf4k:0.0.3")
+    compile("net.nprod:rdf4k:0.0.9")
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 ```
+
+There are a lot of examples in src/test that showcase the different features of both RDF4K and RDF4J.
+ 
 # Help received
 
 Thanks to *Campbell Jones* for the Gradle/Bintray help.
