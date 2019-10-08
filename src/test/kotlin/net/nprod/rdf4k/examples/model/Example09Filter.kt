@@ -8,8 +8,11 @@
 
 package net.nprod.rdf4k.examples.model
 
-import net.nprod.rdf4k.*
-import org.eclipse.rdf4j.model.*
+import net.nprod.rdf4k.o
+import net.nprod.rdf4k.p
+import net.nprod.rdf4k.s
+import org.eclipse.rdf4j.model.IRI
+import org.eclipse.rdf4j.model.Literal
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.Rio

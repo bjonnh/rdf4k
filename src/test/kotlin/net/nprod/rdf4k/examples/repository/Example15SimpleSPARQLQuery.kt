@@ -9,7 +9,8 @@
 package net.nprod.rdf4k.examples.repository
 
 
-import net.nprod.rdf4k.*
+import net.nprod.rdf4k.get
+import net.nprod.rdf4k.map
 import org.eclipse.rdf4j.model.vocabulary.FOAF
 import org.eclipse.rdf4j.repository.sail.SailRepository
 import org.eclipse.rdf4j.rio.RDFFormat
@@ -30,7 +31,7 @@ object Example15SimpleSPARQLQuery {
     fun main(args: Array<String>) {
         // Create a new Repository.
         val db = SailRepository(MemoryStore())
-        db.initialize()
+        db.init()
 
         // Open a connection to the database
         try {

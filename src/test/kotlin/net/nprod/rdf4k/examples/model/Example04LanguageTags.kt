@@ -7,7 +7,10 @@
  */
 package net.nprod.rdf4k.examples.model
 
-import net.nprod.rdf4k.*
+import net.nprod.rdf4k.modelBuilder
+import net.nprod.rdf4k.namespace
+import net.nprod.rdf4k.o
+import net.nprod.rdf4k.subject
 import org.eclipse.rdf4j.model.Literal
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory
 import org.eclipse.rdf4j.model.vocabulary.DC
@@ -39,10 +42,11 @@ object Example04LanguageTags {
         // To see what's in our model, let's just print it to the screen
         model.map { statement ->
             // we want to see the object values of each statement
-            val value = statement.o
-            if (value is Literal) {
-                println("language: " + value.language.orElse("unknown"))
-                println(" title: " + value.label)
+            statement.o.let {
+                if (it is Literal) {
+                    println("language: " + it.language.orElse("unknown"))
+                    println(" title: " + it.label)
+                }
             }
         }
     }

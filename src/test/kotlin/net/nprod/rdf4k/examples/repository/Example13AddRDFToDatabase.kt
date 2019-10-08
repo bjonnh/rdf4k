@@ -41,7 +41,7 @@ object Example13AddRDFToDatabase {
         // See http://docs.rdf4j.org/programming/#_the_repository_api for more extensive net.nprod.rdf4k.examples.examples on
         // how to create and maintain different types of databases.
         val db = SailRepository(MemoryStore())
-        db.initialize()
+        db.init()
 
         // Open a connection to the database
         try {

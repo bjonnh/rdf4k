@@ -8,9 +8,10 @@
 
 package net.nprod.rdf4k.examples.model
 
-import net.nprod.rdf4k.*
 import net.nprod.rdf4k.modelBuilder
 import net.nprod.rdf4k.namespace
+import net.nprod.rdf4k.o
+import net.nprod.rdf4k.p
 import net.nprod.rdf4k.subject
 
 import org.eclipse.rdf4j.model.Literal
@@ -59,7 +60,7 @@ object Example03LiteralDatatypes {
                 when (property.localName) {
                     "peopleDepicted" -> {
                         val peopleDepicted = value.intValue()
-                        println(peopleDepicted.toString() + " people are depicted in this painting")
+                        println("$peopleDepicted people are depicted in this painting")
                     }
                     "creationDate" -> {
                         val calendar = value.calendarValue()

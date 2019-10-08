@@ -9,7 +9,15 @@
 
 package net.nprod.rdf4k.examples.query
 
-import net.nprod.rdf4k.*
+import net.nprod.rdf4k.get
+import net.nprod.rdf4k.map
+import net.nprod.rdf4k.modelBuilder
+import net.nprod.rdf4k.namespace
+import net.nprod.rdf4k.select
+import net.nprod.rdf4k.selectQuery
+import net.nprod.rdf4k.sparqlPrefix
+import net.nprod.rdf4k.sparqlVariable
+import net.nprod.rdf4k.subject
 import org.eclipse.rdf4j.model.vocabulary.FOAF
 import org.eclipse.rdf4j.model.vocabulary.RDF
 import org.eclipse.rdf4j.repository.sail.SailRepository
@@ -63,7 +71,7 @@ object ExampleK02QueryBuilder {
         } orderBy name limit 5 offset 0 ).queryString
         println(selectQuery)
         val db = SailRepository(MemoryStore())
-        db.initialize()
+        db.init()
         // Open a connection to the database
         try {
             db.connection.apply {

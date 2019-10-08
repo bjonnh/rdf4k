@@ -8,9 +8,11 @@
 
 package net.nprod.rdf4k.examples.function
 
-import net.nprod.rdf4k.*
-import org.eclipse.rdf4j.model.vocabulary.FOAF
-import org.eclipse.rdf4j.model.vocabulary.RDF
+import net.nprod.rdf4k.get
+import net.nprod.rdf4k.map
+import net.nprod.rdf4k.modelBuilder
+import net.nprod.rdf4k.namespace
+import net.nprod.rdf4k.subject
 import org.eclipse.rdf4j.model.vocabulary.RDFS
 import org.eclipse.rdf4j.repository.sail.SailRepository
 import org.eclipse.rdf4j.sail.memory.MemoryStore
@@ -57,7 +59,7 @@ class ExampleK01FunctionInSPARQL {
             | }""".trimMargin()
 
         val db = SailRepository(MemoryStore())
-        db.initialize()
+        db.init()
         // Open a connection to the database
         val output = try {
             db.connection.run {

@@ -31,7 +31,7 @@ object Example16SPARQLConstructQuery {
     fun main(args: Array<String>) {
         // Create a new Repository.
         val db = SailRepository(MemoryStore())
-        db.initialize()
+        db.init()
 
         // Open a connection to the database
         try {

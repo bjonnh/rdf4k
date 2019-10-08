@@ -1,5 +1,5 @@
-/********************************************************************************
- * Copyright (c) 2018 Jonathan Bisson
+/*
+ * Copyright (c) 2019 Jonathan Bisson
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,7 @@
  * available at https://www.gnu.org/software/classpath/license.html.
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- ********************************************************************************/
+ */
 
 package net.nprod.rdf4k
 
@@ -23,7 +23,6 @@ import org.eclipse.rdf4j.sparqlbuilder.core.query.Queries
 import org.eclipse.rdf4j.sparqlbuilder.core.query.SelectQuery
 import org.eclipse.rdf4j.sparqlbuilder.rdf.Iri
 
-
 /**
  * Allows to construct a SPARQL Query using Kotlin's DSL
  *
@@ -31,7 +30,6 @@ import org.eclipse.rdf4j.sparqlbuilder.rdf.Iri
  * @sample net.nprod.rdf4k.examples.query.ExampleK02QueryBuilder
  */
 fun selectQuery(block: SelectQuery.() -> Unit): SelectQuery = Queries.SELECT().apply(block)
-
 
 /**
  * Allows to insert a select in a SPARQL Query using Kotlin's DSL
@@ -43,7 +41,6 @@ fun SelectQuery.select(name: Variable?, function: SelectQuery.() -> SelectQuery)
     return this.select(name).function()
 }
 
-
 /**
  * Allows to insert a prefix in a SPARQL Query using Kotlin's DSL
  *
@@ -54,7 +51,6 @@ fun SelectQuery.prefix(name: String, iri: Iri): SelectQuery {
     return this.prefix(sparqlPrefix(name, iri))
 }
 
-
 /**
  * A helper function to help write SPARQL variables in the DSL
  *
@@ -62,7 +58,6 @@ fun SelectQuery.prefix(name: String, iri: Iri): SelectQuery {
  * @sample net.nprod.rdf4k.examples.query.ExampleK02QueryBuilder
  */
 fun sparqlVariable(name: String): Variable = SparqlBuilder.`var`(name)
-
 
 /**
  * A helper function to help write SPARQL prefix in the DSL
