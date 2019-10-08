@@ -131,3 +131,4 @@ reports/
 
 target/
 /.attach_pid*
+/.gradle-cache/

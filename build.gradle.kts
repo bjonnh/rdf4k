@@ -1,9 +1,25 @@
+/*
+ * Copyright (c) 2019 Jonathan Bisson
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is
+ * available at https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+import net.nprod.rdf4k.build.configureSpotless
+import net.nprod.rdf4k.build.configureTesting
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.gradle.api.publish.maven.MavenPom
-import org.jetbrains.dokka.gradle.*
+import org.jetbrains.dokka.gradle.DokkaTask
 import java.util.Properties
 
 val kotlinVersion = "1.3.50"
@@ -11,17 +27,30 @@ val rdf4jVersion = "3.0.0"
 
 plugins {
     kotlin("jvm") version "1.3.50"
-    id("org.jetbrains.dokka") version "0.9.18"
+    id("org.jetbrains.dokka") version "0.10.0"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.4"
     id("com.github.johnrengelman.shadow") version "5.1.0"
+    apply { id("com.github.ben-manes.versions") version "0.25.0" }
 }
 
 group = "net.nprod"
-version = "0.0.9"
+version = "0.1.0"
 val artifactID = "rdf4k"
 
+buildscript {
+    val kotlinVersion = "1.3.50"
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(kotlin("gradle-plugin", kotlinVersion))
+        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
+    }
+}
+
 repositories {
+    maven { setUrl("https://kotlin.bintray.com/kotlinx") }
     mavenCentral()
     jcenter()
 }
@@ -33,7 +62,7 @@ dependencies {
     compile("org.eclipse.rdf4j", "rdf4j-runtime", rdf4jVersion)
     compile("org.eclipse.rdf4j", "rdf4j-queryresultio-text", rdf4jVersion)
     compile("org.eclipse.rdf4j", "rdf4j-sparqlbuilder", rdf4jVersion)
-    compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:0.9.18")
+    compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:0.10.0")
     testCompile("org.junit.jupiter", "junit-jupiter", "5.5.2")
 }
 
@@ -48,19 +77,23 @@ val test by tasks.getting(Test::class) {
 val githubRepo = "https://github.com/bjonnh/rdf4k"
 
 val dokkaJavadoc = task<DokkaTask>("dokkaJavadoc") {
-    val src = "src/"
     outputFormat = "javadoc"
     outputDirectory = "$projectDir/javadoc"
-    skipEmptyPackages = true
-    jdkVersion = 8
+    configuration {
+        skipEmptyPackages = true
+        jdkVersion = 8
+        moduleName = ""
+        sourceRoot {
+            path = "src"
+        }
+    }
+
     /*val mapping = LinkMapping().apply {
         dir = src
         url = "${githubRepo}/blob/master/$src"
         suffix = "#L"
     }
     linkMappings = arrayListOf(mapping)*/
-    sourceDirs = files(src)
-    moduleName = ""
 }
 
 val javadocJar by tasks.creating(Jar::class) {
@@ -69,35 +102,40 @@ val javadocJar by tasks.creating(Jar::class) {
     from(tasks["dokkaJavadoc"])
 }
 
-
 val dokkaHtmldoc = task<DokkaTask>("dokkaHtmldoc") {
     val src = "src/"
     val out = "$projectDir/docs"
 
     doFirst {
-        println("Cleaning doc directory ${out}...")
+        println("Cleaning doc directory $out...")
         project.delete(fileTree(out) {
             exclude("logos/**", "templates/**")
         })
     }
 
-    moduleName = ""
-    sourceDirs = files(src)
+    configuration {
+        moduleName = ""
+        sourceRoot {
+            path = "src"
+        }
+        skipEmptyPackages = true
+        jdkVersion = 8
+        includes = listOf("README.md")
+
+        sourceLink {
+            path = src
+            url = "$githubRepo/blob/master/$src"
+            lineSuffix = "#L"
+        }
+    }
+
     outputFormat = "html"
     outputDirectory = out
-    skipEmptyPackages = true
-    jdkVersion = 8
-    includes = listOf("README.md")
-    val mapping = LinkMapping().apply {
-        dir = src
-        url = "${githubRepo}/blob/master/$src"
-        suffix = "#L"
-    }
-    linkMappings = arrayListOf(mapping)
+
     description = "Generate ${project.name} v$version docs in HTML."
 
     doLast {
-        println("Generated HTML format docs to ${outputDirectory}")
+        println("Generated HTML format docs to $outputDirectory")
     }
 }
 
@@ -109,9 +147,7 @@ tasks {
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
     }
-
 }
-
 
 val sourcesJar by tasks.creating(Jar::class) {
     classifier = "sources"
@@ -137,11 +173,10 @@ bintray {
         vcsUrl = "https://github.com/bjonnh/rdf4k"
         description = "A wrapper around RDF4J for Kotlin."
         setLabels("kotlin", "rdf4j", "linkeddata")
-        setLicenses("EPL-2.0", "GPL-3.0")
+        setLicenses("EPL-2.0", "Apache-2.0")
         desc = description
     })
 }
-
 
 publishing.publications.create<MavenPublication>("BintrayRelease") {
     from(components["java"])
@@ -151,3 +186,6 @@ publishing.publications.create<MavenPublication>("BintrayRelease") {
     artifactId = project.name
     version = project.version.toString()
 }
+
+configureSpotless()
+configureTesting()

@@ -50,6 +50,22 @@ tasks.withType<KotlinCompile> {
 
 There are a lot of examples in src/test that showcase the different features of both RDF4K and RDF4J.
  
+# How to publish (developers)
+
+The project is published on bintray, use the gradle tasks bintrayPublish then bintrayUpload.
+It will require that you have bintray access to that repository obviously. 
+
+The project is using [Batect](https://github.com/charleskorn/batect/) for testing and building in a standardised way. 
+
+To verify the project builds, run:
+```shell script
+$ ./batect check
+```  
+
+Before a new release please run as well:
+```shell script
+$ ./batect outdated
+```
 # Help received
 
 Thanks to *Campbell Jones* for the Gradle/Bintray help.
