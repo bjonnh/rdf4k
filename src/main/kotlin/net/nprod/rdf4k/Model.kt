@@ -43,6 +43,16 @@ fun ModelBuilder.namespace(prefix: String, namespace: String): ModelBuilder {
  * @author Jonathan Bisson
  * @sample net.nprod.rdf4k.examples.model.Example02BuildModel
  */
+fun ModelBuilder.subject(prefixedNameOrIRI: String, block: ModelBuilder.() -> ModelBuilder): ModelBuilder {
+    return this.subject(prefixedNameOrIRI).block()
+}
+
+/**
+ * Adds a subject to a given ModelBuilder, returns any type
+ *
+ * @author Jonathan Bisson
+ * @sample net.nprod.rdf4k.examples.model.Example02BuildModel
+ */
 fun ModelBuilder.subject(prefixedNameOrIRI: String, block: ModelBuilder.() -> Any?): Any? {
     return this.subject(prefixedNameOrIRI).block()
 }
