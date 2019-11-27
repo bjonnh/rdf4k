@@ -22,11 +22,11 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import java.util.Properties
 
-val kotlinVersion = "1.3.50"
-val rdf4jVersion = "3.0.0"
+val kotlinVersion = "1.3.60"
+val rdf4jVersion = "3.0.2"
 
 plugins {
-    kotlin("jvm") version "1.3.50"
+    kotlin("jvm") version "1.3.60"
     id("org.jetbrains.dokka") version "0.10.0"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.4"
@@ -35,11 +35,11 @@ plugins {
 }
 
 group = "net.nprod"
-version = "0.1.0"
+version = "0.1.1"
 val artifactID = "rdf4k"
 
 buildscript {
-    val kotlinVersion = "1.3.50"
+    val kotlinVersion = "1.3.60"
     repositories {
         mavenCentral()
     }
@@ -173,7 +173,7 @@ bintray {
         vcsUrl = "https://github.com/bjonnh/rdf4k"
         description = "A wrapper around RDF4J for Kotlin."
         setLabels("kotlin", "rdf4j", "linkeddata")
-        setLicenses("EPL-2.0", "Apache-2.0")
+        setLicenses("EPL-2.0", "GPL-2.0")
         desc = description
     })
 }
