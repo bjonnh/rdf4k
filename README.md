@@ -40,7 +40,7 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
-    compile("net.nprod:rdf4k:0.0.9")
+    compile("net.nprod:rdf4k:0.1.2")
 }
 
 tasks.withType<KotlinCompile> {

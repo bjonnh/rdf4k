@@ -22,24 +22,24 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import java.util.Properties
 
-val kotlinVersion = "1.3.60"
-val rdf4jVersion = "3.0.2"
+val kotlinVersion = "1.3.61"
+val rdf4jVersion = "3.1.0-M2"
 
 plugins {
-    kotlin("jvm") version "1.3.60"
+    kotlin("jvm") version "1.3.61"
     id("org.jetbrains.dokka") version "0.10.0"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.4"
-    id("com.github.johnrengelman.shadow") version "5.1.0"
-    apply { id("com.github.ben-manes.versions") version "0.25.0" }
+    id("com.github.johnrengelman.shadow") version "5.2.0"
+    apply { id("com.github.ben-manes.versions") version "0.27.0" }
 }
 
 group = "net.nprod"
-version = "0.1.1"
+version = "0.1.2"
 val artifactID = "rdf4k"
 
 buildscript {
-    val kotlinVersion = "1.3.60"
+    val kotlinVersion = "1.3.61"
     repositories {
         mavenCentral()
     }
@@ -63,7 +63,7 @@ dependencies {
     compile("org.eclipse.rdf4j", "rdf4j-queryresultio-text", rdf4jVersion)
     compile("org.eclipse.rdf4j", "rdf4j-sparqlbuilder", rdf4jVersion)
     compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:0.10.0")
-    testCompile("org.junit.jupiter", "junit-jupiter", "5.5.2")
+    testCompile("org.junit.jupiter", "junit-jupiter", "5.6.0")
 }
 
 tasks.withType<KotlinCompile> {
